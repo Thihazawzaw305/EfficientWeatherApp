@@ -71,6 +71,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+ //Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt)
     ksp(libs.hilt.android.compiler)
+ //Gson
+    implementation(libs.gson)
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation (libs.converter.gson)
 }

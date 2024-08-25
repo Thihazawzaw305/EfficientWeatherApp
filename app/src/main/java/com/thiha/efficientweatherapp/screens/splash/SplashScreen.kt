@@ -1,8 +1,6 @@
-package com.thiha.efficientweatherapp.screens
+package com.thiha.efficientweatherapp.screens.splash
 
 import android.view.animation.OvershootInterpolator
-import androidx.compose.animation.Animatable
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
