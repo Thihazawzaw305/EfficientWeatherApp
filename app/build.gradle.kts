@@ -71,8 +71,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-
- //Hilt
+    implementation(libs.androidx.animation)
+    //Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt)
     ksp(libs.hilt.android.compiler)
