@@ -85,7 +85,6 @@ fun SettingsScreen(navController: NavController,
                 Button(onClick = {
                     settingsViewModel.deleteAllUnits()
                     settingsViewModel.insertUnit(Unit(unit = choiceState ))
-navController.popBackStack()
                 },
                     modifier = Modifier
                         .padding(3.dp)

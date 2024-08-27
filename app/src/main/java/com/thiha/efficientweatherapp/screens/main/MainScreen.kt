@@ -1,42 +1,29 @@
 package com.thiha.efficientweatherapp.screens.main
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.core.animateTo
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,20 +38,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.thiha.efficientweatherapp.data.DataOrException
 import com.thiha.efficientweatherapp.model.Weather
 import com.thiha.efficientweatherapp.widgets.WeatherAppBar
 import java.time.LocalTime
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import com.thiha.efficientweatherapp.R
 import com.thiha.efficientweatherapp.model.WeatherItem
 import com.thiha.efficientweatherapp.navigation.WeatherScreens
@@ -73,8 +52,6 @@ import com.thiha.efficientweatherapp.utils.formatDate
 import com.thiha.efficientweatherapp.widgets.SunriseSunsetIndicator
 import com.thiha.efficientweatherapp.widgets.WeatherDetailsCard
 import com.thiha.efficientweatherapp.widgets.WeatherForecastCard
-import java.text.SimpleDateFormat
-import java.util.Date
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -85,7 +62,7 @@ fun MainScreen(
     settingsViewModel: SettingsViewModel = hiltViewModel(),
     city: String?
 ) {
-    val curCity: String = if (city!!.isBlank()) "Seattle" else city
+    val curCity: String = if (city!!.isBlank()) "Yangon" else city
     val unitFromDb = settingsViewModel.unitList.collectAsState().value
     var unit by remember {
         mutableStateOf("imperial")
@@ -111,14 +88,14 @@ fun MainScreen(
         if (weatherData.loading == true) {
             CircularProgressIndicator()
         } else if (weatherData.data != null) {
-            MainScaffold(weather = weatherData.data!!, navController)
+            MainScaffold(weather = weatherData.data!!, navController, isImperial = isImperial)
         }
     }
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MainScaffold(weather: Weather, navController: NavController) {
+fun MainScaffold(weather: Weather, navController: NavController, isImperial: Boolean) {
     Scaffold(
         topBar = {
             WeatherAppBar(
@@ -132,7 +109,7 @@ fun MainScaffold(weather: Weather, navController: NavController) {
         },
 
         ) { innerPadding ->
-        MainContent(data = weather, innerPadding)
+        MainContent(data = weather, innerPadding, isImperial = isImperial)
 
 
     }
@@ -143,7 +120,7 @@ fun MainScaffold(weather: Weather, navController: NavController) {
 @SuppressLint("DefaultLocale")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MainContent(data: Weather, innerPadding: PaddingValues) {
+fun MainContent(data: Weather, innerPadding: PaddingValues, isImperial: Boolean) {
     val imageUrl =
         "https://openweathermap.org/img/wn/${data!!.list.first().weather.first().icon}@2x.png"
     val scrollState = rememberScrollState()
