@@ -33,7 +33,7 @@ fun SettingsScreen(navController: NavController,
                    settingsViewModel: SettingsViewModel = hiltViewModel()) {
 
     var unitToggleState by remember { mutableStateOf(false) }
-    val measurementUnits = listOf("Imperial (F)", "Metric (C)")
+    val measurementUnits = listOf( "Metric (C)", "Imperial (F)")
     val choiceFromDb = settingsViewModel.unitList.collectAsState().value
 
     val defaultChoice = if (choiceFromDb.isNullOrEmpty()) measurementUnits[0]
