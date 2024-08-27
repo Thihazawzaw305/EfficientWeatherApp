@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.ksp)
+//    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -76,7 +77,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt)
     ksp(libs.hilt.android.compiler)
- //Gson
+    //Gson
     implementation(libs.gson)
 
     // retrofit
@@ -84,4 +85,14 @@ dependencies {
     implementation (libs.converter.gson)
 // coil
     implementation(libs.coil.kt.coil.compose)
+
+//    //room
+//    implementation(libs.room.compiler)
+//    annotationProcessor(libs.room.compiler)
+//    implementation("androidx.room:room-rxjava3:2.6.1")
+
+//    kapt(libs.room.compiler)
+
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }

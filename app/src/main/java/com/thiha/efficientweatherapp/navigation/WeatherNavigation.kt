@@ -11,8 +11,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.thiha.efficientweatherapp.screens.Search.SearchScreen
+import com.thiha.efficientweatherapp.screens.about.AboutScreen
+import com.thiha.efficientweatherapp.screens.favourite.FavoritesScreen
 import com.thiha.efficientweatherapp.screens.main.MainScreen
 import com.thiha.efficientweatherapp.screens.main.MainViewModel
+import com.thiha.efficientweatherapp.screens.setting.SettingScreen
 import com.thiha.efficientweatherapp.screens.splash.SplashScreen
 
 
@@ -39,6 +42,17 @@ fun WeatherNavigation() {
         }
         composable(WeatherScreens.SearchScreen.name){
             SearchScreen(navController = navController)
+        }
+        composable(WeatherScreens.FavouriteScreen.name){
+            FavoritesScreen(navController = navController)
+        }
+
+        composable(WeatherScreens.AboutScreen.name){
+            AboutScreen(navController = navController)
+        }
+
+        composable(WeatherScreens.SettingsScreen.name){
+            SettingScreen(navController = navController)
         }
     }
 }

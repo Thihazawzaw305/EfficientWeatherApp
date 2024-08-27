@@ -98,6 +98,7 @@ fun MainScaffold(weather: Weather, navController: NavController) {
             WeatherAppBar(
                 navController = navController,
                 title = weather.city.name,
+                country = weather.city.country,
                 onAddActionClicked = {
                     navController.navigate(WeatherScreens.SearchScreen.name)
                 }
