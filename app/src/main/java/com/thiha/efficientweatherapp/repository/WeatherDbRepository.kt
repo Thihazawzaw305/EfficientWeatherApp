@@ -4,6 +4,7 @@ import com.thiha.efficientweatherapp.data.WeatherDao
 import com.thiha.efficientweatherapp.model.Favorite
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import com.thiha.efficientweatherapp.model.Unit
 
 class WeatherDbRepository @Inject constructor(private val weatherDao: WeatherDao) {
 
@@ -14,11 +15,11 @@ class WeatherDbRepository @Inject constructor(private val weatherDao: WeatherDao
     suspend fun deleteFavorite(favorite: Favorite) = weatherDao.deleteFavorite(favorite)
     suspend fun getFavById(city: String): Favorite = weatherDao.getFavById(city)
 
-//    fun getUnits(): Flow<List<Unit>> = weatherDao.getUnits()
-//    suspend fun insertUnit(unit: Unit) = weatherDao.insertUnit(unit)
-//    suspend fun updateUnit(unit: Unit) = weatherDao.updateUnit(unit)
-//    suspend fun deleteAllUnits() = weatherDao.deleteAllUnits()
-//    suspend fun deleteUnit(unit: Unit) = weatherDao.deleteUnit(unit)
+    fun getUnits(): Flow<List<Unit>> = weatherDao.getUnits()
+    suspend fun insertUnit(unit: Unit) = weatherDao.insertUnit(unit)
+    suspend fun updateUnit(unit: Unit) = weatherDao.updateUnit(unit)
+    suspend fun deleteAllUnits() = weatherDao.deleteAllUnits()
+    suspend fun deleteUnit(unit: Unit) = weatherDao.deleteUnit(unit)
 
 
 

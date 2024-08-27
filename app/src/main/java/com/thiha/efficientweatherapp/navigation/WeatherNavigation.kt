@@ -15,7 +15,7 @@ import com.thiha.efficientweatherapp.screens.about.AboutScreen
 import com.thiha.efficientweatherapp.screens.favourite.FavoritesScreen
 import com.thiha.efficientweatherapp.screens.main.MainScreen
 import com.thiha.efficientweatherapp.screens.main.MainViewModel
-import com.thiha.efficientweatherapp.screens.setting.SettingScreen
+import com.thiha.efficientweatherapp.screens.setting.SettingsScreen
 import com.thiha.efficientweatherapp.screens.splash.SplashScreen
 
 
@@ -52,7 +52,7 @@ fun WeatherNavigation() {
         }
 
         composable(WeatherScreens.SettingsScreen.name){
-            SettingScreen(navController = navController)
+            SettingsScreen(navController = navController)
         }
     }
 }

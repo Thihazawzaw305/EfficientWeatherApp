@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.thiha.efficientweatherapp.model.Favorite
 import kotlinx.coroutines.flow.Flow
+import com.thiha.efficientweatherapp.model.Unit
 
 @Dao
 interface WeatherDao {
@@ -30,19 +31,19 @@ interface WeatherDao {
     suspend fun deleteFavorite(favorite: Favorite)
 
     // Unit table
-//    @Query("SELECT * from settings_tbl")
-//    fun getUnits(): Flow<List<Unit>>
-//
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertUnit(unit: Unit)
-//
-//    @Update(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun updateUnit(unit: Unit)
-//
-//    @Query("DELETE from settings_tbl")
-//    suspend fun deleteAllUnits()
+    @Query("SELECT * from settings_tbl")
+    fun getUnits(): Flow<List<Unit>>
 
-//    @Delete
-//    suspend fun deleteUnit(unit: Unit)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUnit(unit: Unit)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateUnit(unit: Unit)
+
+    @Query("DELETE from settings_tbl")
+    suspend fun deleteAllUnits()
+
+    @Delete
+    suspend fun deleteUnit(unit: Unit)
 
 }
