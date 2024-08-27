@@ -109,10 +109,11 @@ fun WeatherAppBar(
 
                 if (isAlreadyFavList.isEmpty()) {
 
-                    Icon(imageVector = Icons.Default.FavoriteBorder,
+                    Icon(imageVector = Icons.Default.Favorite,
                         contentDescription = "Favorite icon",
                         modifier = Modifier
                             .scale(0.9f)
+                            .padding(start = 8.dp)
                             .clickable {
                                 val data = title
                                 val countryData = country
@@ -125,7 +126,7 @@ fun WeatherAppBar(
                                     showIt.value = true
                                 }
                             },
-                        tint = Color.Red.copy(alpha = 0.6f))
+                        tint = Color.Red.copy(0.6f))
                 }else {
                     showIt.value = false
                     Box{}

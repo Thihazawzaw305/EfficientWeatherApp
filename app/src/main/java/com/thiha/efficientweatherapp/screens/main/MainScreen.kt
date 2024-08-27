@@ -70,6 +70,7 @@ import com.thiha.efficientweatherapp.model.WeatherItem
 import com.thiha.efficientweatherapp.navigation.WeatherScreens
 import com.thiha.efficientweatherapp.screens.setting.SettingsViewModel
 import com.thiha.efficientweatherapp.utils.formatDate
+import com.thiha.efficientweatherapp.utils.formatTimeFromSeconds
 import com.thiha.efficientweatherapp.widgets.SunriseSunsetIndicator
 import com.thiha.efficientweatherapp.widgets.WeatherDetailsCard
 import com.thiha.efficientweatherapp.widgets.WeatherForecastCard
@@ -183,16 +184,17 @@ fun MainContent(data: Weather, innerPadding: PaddingValues) {
         )
         Text(
             text = "High ${data.list.first().main.temp_max.toInt()}°. Low ${data!!.list.first().main.temp_min.toInt()}°",
-            style = TextStyle(fontSize = 12.sp)
+            style = TextStyle(fontSize = 12.sp),
+            modifier = Modifier.padding(bottom = 12.dp)
+
         )
 
 
 
         SunriseSunsetIndicator(
-            sunriseTime = sunriseTime,
-            sunsetTime = sunsetTime,
-            currentTime = currentTime,
-            modifier = Modifier.padding(16.dp)
+            sunriseTime = formatTimeFromSeconds(data.city.sunrise) ,
+            sunsetTime = formatTimeFromSeconds(data.city.sunset) ,
+            modifier = Modifier.padding(8.dp)
         )
 
 

@@ -1,5 +1,6 @@
 package com.thiha.efficientweatherapp.utils
 
+
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -21,4 +22,12 @@ fun formatDataTime(timestamp : Int) : String {
     val date = Date(timestamp.toLong() * 1000)
 
     return  sdf.format(date)
+}
+
+
+fun formatTimeFromSeconds(seconds: Int): String {
+    // Multiply by 1000 because Date takes milliseconds
+    val date = Date(seconds.toLong() * 1000)
+    val format = SimpleDateFormat("h:mm a", Locale.ENGLISH)
+    return format.format(date)
 }
