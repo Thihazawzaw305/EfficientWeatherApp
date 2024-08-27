@@ -64,6 +64,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.thiha.efficientweatherapp.R
 import com.thiha.efficientweatherapp.model.WeatherItem
+import com.thiha.efficientweatherapp.navigation.WeatherScreens
 import com.thiha.efficientweatherapp.utils.formatDate
 import com.thiha.efficientweatherapp.widgets.SunriseSunsetIndicator
 import com.thiha.efficientweatherapp.widgets.WeatherDetailsCard
@@ -74,11 +75,11 @@ import java.util.Date
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel()) {
+fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel(), city : String?) {
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = mainViewModel.getWeather(city = "Yangon")
+        value = mainViewModel.getWeather(city = city.toString())
     }.value
 
     if (weatherData.loading == true) {
@@ -96,7 +97,10 @@ fun MainScaffold(weather: Weather, navController: NavController) {
         topBar = {
             WeatherAppBar(
                 navController = navController,
-                title = "Yangon"
+                title = weather.city.name,
+                onAddActionClicked = {
+                    navController.navigate(WeatherScreens.SearchScreen.name)
+                }
             )
         },
 
